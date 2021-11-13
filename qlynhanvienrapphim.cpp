@@ -58,7 +58,7 @@ void LuongFullTime::nhap() {
 }
 
 int LuongFullTime::tluong() {
-	return (5000000 - 20000 * songaynghi) + tienthuong;
+	return (7000000 - 220000 * songaynghi) + tienthuong;
 }
 
 void LuongFullTime::xuat() {
@@ -205,7 +205,7 @@ int main() {
 	LuongFullTime ft;
 	cout << "============================================================================" << endl;
 	cout << "||                                                                        ||" << endl;
-	cout << "||                           QUAN LY NHAN VIEN                            ||" << endl;
+	cout << "||                     QUAN LY NHAN VIEN RAP CHIEU PHIM                   ||" << endl;
 	cout << "||                                                                        ||" << endl;
 	cout << "||           ###############    ######     ###     ################       ||" << endl;
 	cout << "||                 ###          ### ###    ###           ###              ||" << endl;
@@ -229,6 +229,9 @@ int main() {
 	cout << "             ||5.CAP NHAT THONG TIN NHAN VIEN                   ||          " << endl;
 	cout << "             ||                                                 ||          " << endl;
 	cout << "             ||6.THOAT                                          ||          " << endl;
+	cout << "             ||                                                 ||          " << endl;
+	cout << "             ||                                                 ||          " << endl;
+	cout << "             ||                                                 ||          " << endl;
 	do {
 		
 
