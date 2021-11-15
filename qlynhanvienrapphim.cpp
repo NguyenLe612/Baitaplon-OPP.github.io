@@ -203,65 +203,86 @@ int main() {
 	ThongTin ns;
 	LuongPartTime pt;
 	LuongFullTime ft;
-	cout << "============================================================================" << endl;
-	cout << "||                                                                        ||" << endl;
-	cout << "||                     QUAN LY NHAN VIEN RAP CHIEU PHIM                   ||" << endl;
-	cout << "||                                                                        ||" << endl;
-	cout << "||           ###############    ######     ###     ################       ||" << endl;
-	cout << "||                 ###          ### ###    ###           ###              ||" << endl;
-	cout << "||                 ###          ###  ###   ###           ###              ||" << endl;
-	cout << "||                 ###          ###   ###  ###           ###              ||" << endl;
-	cout << "||                 ###          ###    ### ###           ###              ||" << endl;
-	cout << "||                 ###          ###     ######           ###   cinema     ||" << endl;
-	cout << "||                                                                        ||" << endl;
-	cout << "============================================================================" << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||1.NHAP DU LIEU NHAN VIEN PART TIME VA XUAT LUONG ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||2.NHAP DU LIEU NHAN VIEN FULL TIME VA XUAT LUONG ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||3.XUAT DANH SACH NHAN VIEN                       ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||4.TIM NHAN VIEN BANG ID                          ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||5.CAP NHAT THONG TIN NHAN VIEN                   ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||6.THOAT                                          ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
-	cout << "             ||                                                 ||          " << endl;
+	cout << "\t\t===============================================================================" << endl;
+	cout << "\t\t||                                                                           ||" << endl;
+	cout << "\t\t||                           QUAN LY NHAN VIEN                               ||" << endl;
+	cout << "\t\t||                                                                           ||" << endl;
+	cout << "\t\t||           ###############    ######     ###     ################          ||" << endl;
+	cout << "\t\t||                 ###          ### ###    ###           ###                 ||" << endl;
+	cout << "\t\t||                 ###          ###  ###   ###           ###                 ||" << endl;
+	cout << "\t\t||                 ###          ###   ###  ###           ###                 ||" << endl;
+	cout << "\t\t||                 ###          ###    ### ###           ###                 ||" << endl;
+	cout << "\t\t||                 ###          ###     ######           ###   cinema        ||" << endl;
+	cout << "\t\t||                                                                           ||" << endl;
+	cout << "\t\t===============================================================================" << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||1.NHAP DU LIEU NHAN VIEN PART TIME VA XUAT LUONG        ||          " << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||2.NHAP DU LIEU NHAN VIEN FULL TIME VA XUAT LUONG        ||          " << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||3.XUAT DANH SACH NHAN VIEN                              ||          " << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||4.TIM NHAN VIEN BANG ID                                 ||          " << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||5.CAP NHAT THONG TIN NHAN VIEN                          ||          " << endl;
+	cout << "\t\t\t||                                                        ||          " << endl;
+	cout << "\t\t\t||6.THOAT                                                 ||          " << endl;
+	cout << "\t\t\t============================================================          " << endl;
 	do {
 		
 
-		cout << "                     LUA CHON CUA BAN : ";
+		cout << endl;
+		cout << "\t\t\t\t\tLUA CHON CUA BAN : ";
 		cin >> chon;
 		switch (chon) {
 		case 1:
-			cout << "                 NHAP DU LIEU NHAN VIEN PART TIME VA XUAT LUONG" << endl;
+			cout << "\t\t-----------------------------------------------------------------------------------" << endl;
+			cout << "\t\t===================================================================================" << endl;
+			cout << "\t\t||                NHAP DU LIEU NHAN VIEN PART TIME VA XUAT LUONG                 ||" << endl;
+			cout << "\t\t===================================================================================" << endl;
+			cout << endl;
 			list.AddL();
 			pt.nhap();
 			pt.xuat();
 			break;
 		case 2:
-			cout << "                 NHAP DU LIEU NHAN VIEN FULL TIME VA XUAT LUONG" << endl;
+			cout << "-----------------------------------------------------------------------------------" << endl;
+			cout << "===================================================================================" << endl;
+			cout << "||                NHAP DU LIEU NHAN VIEN FULL TIME VA XUAT LUONG                 ||" << endl;
+			cout << "===================================================================================" << endl;
+			cout << endl;
 			list.AddL();
 			ft.nhap();
 			ft.xuat();
 			break;
 		case 3:
-			cout << "                           DANH SACH NHAN VIEN" << endl;
+			cout << "-----------------------------------------------------------------------------------" << endl;
+			cout << "===================================================================================" << endl;
+			cout << "||                           XUAT DANH SACH NHAN VIEN                            ||" << endl;
+			cout << "===================================================================================" << endl;
+			cout << endl;
 			list.xuatNS();
 			break;
 		case 4:
+			cout << "-----------------------------------------------------------------------------------" << endl;
+			cout << "===================================================================================" << endl;
+			cout << "||                                    TIM KIEM                                   ||" << endl;
+			cout << "===================================================================================" << endl;
+			cout << endl;
 			list.SearchID();
 			break;
 		case 5:
+			cout << "-----------------------------------------------------------------------------------" << endl;
+			cout << "===================================================================================" << endl;
+			cout << "||                              cAP NHAT NHAN VIEN                               ||" << endl;
+			cout << "===================================================================================" << endl;
+			cout << endl;
 			list.Sua();
 			break;
 		case 6:
-			cout << "DTcinema.com" << endl;
+			exit(0);
 			break;
 		default:
 			cout << "Vui Long Chon Dung..." << endl;
