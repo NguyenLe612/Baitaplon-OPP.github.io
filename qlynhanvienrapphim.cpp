@@ -230,7 +230,7 @@ void ThongTin::nhap() {
 
 
 void ThongTin::xuat() {
-	cout << "\t\t\t\t\t\t\t\tHo ten : " << setw(15) << left << hoten << setw(15);
+	cout << "\t\t\t\t\t\t\t\tHo ten : " << setw(30) << left << hoten << setw(15);
 	cout << "Gioi tinh : " << gioitinh << endl;
 	cout << "\t\t\t\t\t\t\t\tID : " << ID << endl;
 	cout << "\t\t\t\t\t\t\t\tNgay sinh : Ngay " << ngay << " Thang " << thang << " Nam " << nam << endl;
@@ -339,6 +339,7 @@ void List::Sua() { //cap nhat thong tin
 }
 void List::SearchID() { //tim nhan vien bang id
 	string id;
+	int f = 0;
 	if (size == 0) {
 		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tDanh Sach Hien Tai Chua Co Nhan Su Nao!!!" << endl;
@@ -349,8 +350,14 @@ void List::SearchID() { //tim nhan vien bang id
 	Node* n = head;
 	for (Node* n = head; n != NULL; n = n->next) {
 		if (n->data.getID() == id) {
+			f++;
 			n->data.xuat();
 		}
+		
+	}
+	if (f == 0) {
+		Beep(587, 500);
+		cout << "\t\t\t\t\t\t\t\tID Khong Ton Tai!!!" << endl;
 	}
 }
 
@@ -708,6 +715,7 @@ void menuquanly() {
 		cin >> chon;
 		switch (chon) {
 		case 1:
+			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===============================================================================" << endl;
 			cout << "\t\t\t\t\t\t\t\t||              NHAP DU LIEU NHAN VIEN PART TIME VA XUAT LUONG               ||" << endl;
@@ -718,6 +726,7 @@ void menuquanly() {
 			pt.xuat();
 			break;
 		case 2:
+			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===============================================================================" << endl;
 			cout << "\t\t\t\t\t\t\t\t||              NHAP DU LIEU NHAN VIEN FULL TIME VA XUAT LUONG               ||" << endl;
@@ -728,6 +737,7 @@ void menuquanly() {
 			ft.xuat();
 			break;
 		case 3:
+			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
 			cout << "\t\t\t\t\t\t\t\t||                           XUAT DANH SACH NHAN VIEN                            ||" << endl;
@@ -736,6 +746,7 @@ void menuquanly() {
 			list.xuatNS();
 			break;
 		case 4:
+			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
 			cout << "\t\t\t\t\t\t\t\t||                                    TIM KIEM                                   ||" << endl;
@@ -744,6 +755,7 @@ void menuquanly() {
 			list.SearchID();
 			break;
 		case 5:
+			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
 			cout << "\t\t\t\t\t\t\t\t||                              cAP NHAT NHAN VIEN                               ||" << endl;
