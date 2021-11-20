@@ -86,7 +86,6 @@ public:
 
 	Node* CreateNode(ThongTin ns);
 	void SearchID();
-	bool Tim(string id);
 	void AddL();
 	void xuatNS();
 	void Sua();
@@ -307,34 +306,33 @@ void List::AddL() {  //them 1 nhan vien
 	}
 }
 
-bool List::Tim(string id) {
-	for (Node* n = head; n != NULL; n = n->next) {
-		if (n->data.getID() == id)
-			return 0;
-	}
-	return 1;
-}
-
 void List::Sua() { //cap nhat thong tin
+	int f = 0;
 	string id;
 	Node* n;
 	ThongTin ns;
+	if (size == 0) {
+		Beep(587, 500);
+		cout << "\t\t\t\t\t\t\t\tDanh Sach Hien Tai Chua Co Nhan Su Nao!!!" << endl;
+		return;
+	}
 	cout << "\t\t\t\t\t\t\t\tID Can Sua Thong Tin : ";
 	cin >> id;
-	if (Tim(id)==1) {
-		Beep(587, 500);
-		cout << "\t\t\t\t\t\t\t\tMa ID Khong Ton Tai..." << endl;
-	}
 	for (Node* n = head; n != NULL; n = n->next) {
 		if (n->data.getID() == id) {
 			cin.ignore();
 			ns.nhap();
 			n->data = ns;
+			f++;
 			Beep(1050, 500);
 			cout << "\t\t\t\t\t\t\t\tDa Hoan Tat" << endl;
 			return;
 				
 		}
+	}
+	if (f==0) {
+		Beep(587, 500);
+		cout << "\t\t\t\t\t\t\t\tMa ID Khong Ton Tai..." << endl;
 	}
 }
 void List::SearchID() { //tim nhan vien bang id
