@@ -5,6 +5,9 @@
 const int g_kArraySize = 8;
 
 
+//tai khoan : username
+//mat khau : password
+
 using namespace std;
 
 
@@ -224,9 +227,7 @@ void ThongTin::nhap() {
 	cin >> nam;
 }
 
-string ThongTin::getID() {
-	return ID;
-}
+
 
 void ThongTin::xuat() {
 	cout << "\t\t\t\t\t\t\t\tHo ten : " << setw(15) << left << hoten << setw(15);
@@ -235,6 +236,10 @@ void ThongTin::xuat() {
 	cout << "\t\t\t\t\t\t\t\tNgay sinh : Ngay " << ngay << " Thang " << thang << " Nam " << nam << endl;
 	cout << "\t\t\t\t\t\t\t\t--------------------------------------------------------------------------------" << endl;
 
+}
+
+string ThongTin::getID() {
+	return ID;
 }
 
 void ThongTin::display() {
@@ -317,6 +322,7 @@ void List::Sua() { //cap nhat thong tin
 	cout << "\t\t\t\t\t\t\t\tID Can Sua Thong Tin : ";
 	cin >> id;
 	if (Tim(id)==1) {
+		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tMa ID Khong Ton Tai..." << endl;
 	}
 	for (Node* n = head; n != NULL; n = n->next) {
@@ -324,6 +330,7 @@ void List::Sua() { //cap nhat thong tin
 			cin.ignore();
 			ns.nhap();
 			n->data = ns;
+			Beep(1050, 500);
 			cout << "\t\t\t\t\t\t\t\tDa Hoan Tat" << endl;
 			return;
 				
@@ -333,6 +340,7 @@ void List::Sua() { //cap nhat thong tin
 void List::SearchID() { //tim nhan vien bang id
 	string id;
 	if (size == 0) {
+		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tDanh Sach Hien Tai Chua Co Nhan Su Nao!!!" << endl;
 		return;
 	}
@@ -348,6 +356,7 @@ void List::SearchID() { //tim nhan vien bang id
 
 void List::xuatNS() {  //xuat ds
 	if (head == NULL && tail == NULL) {
+		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tDanh Sach Trong..." << endl;
 	}
 	for (Node* n = head; n != NULL; n = n->next) {
@@ -533,6 +542,7 @@ Movie* MovieTicketMaster::SearchMovie()  //yeu cau nhap va dung ham de tim
 		p->Display();
 	}
 	else {
+		Beep(587, 500);
 		cout << endl << "\t\t\t\t\t\t\t\tKhong Tim Thay Phim." << endl << endl;
 		return NULL;
 	}
@@ -550,6 +560,7 @@ Movie* MovieTicketMaster::FindMovie(string timphim)   //su dung vong lap de tim 
 	//func1353c
 	for (int i = 0; i < g_kArraySize; i++) {
 		if (p_find_movie->get_tenphim() == timphim) {    //dung vong long de tim phim phu hop, sau do con tro tra lai doi tuong
+			Beep(1050, 500);
 			cout << endl << "\t\t\t\t\t\t\t\tDa tim thay..." << endl;
 			return p_find_movie;
 		}
@@ -593,6 +604,7 @@ void MovieTicketMaster::MuaVe()
 		system("CLS");
 	}
 	else {
+		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tKhong tim thay phim" << endl;
 	}
 	system("pause");
@@ -641,6 +653,7 @@ void MovieTicketMaster::Run()  //chay vong lap de yeu cau su lua chon cua ng dun
 
 
 		default:
+			Beep(587, 500);
 			system("cls");
 
 		}
@@ -742,6 +755,7 @@ void menuquanly() {
 			exit(0);
 			break;
 		default:
+			Beep(587, 500);
 			cout << "\t\t\t\t\t\t\t\tVui Long Chon Dung..." << endl;
 			cin.ignore();
 		}
@@ -783,7 +797,8 @@ int main() {
 		}
 		else
 		{
-			cout << "\t\t\t\t\t\t\t\tTai khoan hoac mat khau khogn dung...Vui long nhap lai" << endl;
+			Beep(587, 500);
+			cout << "\t\t\t\t\t\t\t\tTai khoan hoac mat khau khong dung...Vui long nhap lai" << endl;
 			cout << endl;
 			goto LAP;
 		}		
