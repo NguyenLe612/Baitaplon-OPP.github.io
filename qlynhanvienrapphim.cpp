@@ -22,7 +22,15 @@ private:
 	string hoten;
 	string ID;
 	string gioitinh;
+	string pt = "Part time";
+	string ft = "Full time";
+	string nv;
 	int ngay, thang, nam;
+	int luongpt;
+	int luongft;
+	int giolam;
+	int tienthuong;
+	int songaynghi;
 
 public:
 	ThongTin();
@@ -39,33 +47,6 @@ public:
 };
 
 
-class LuongPartTime :public Nhansu {
-private:
-	int sogio;
-	int thuong;
-public:
-	LuongPartTime();
-	~LuongPartTime();
-
-	void nhap();
-	void xuat();
-	int luong();
-};
-
-
-class LuongFullTime :public Nhansu {
-private:
-	int tienthuong;
-	int songaynghi;
-public:
-	LuongFullTime();
-	~LuongFullTime();
-
-	void nhap();
-	void xuat();
-	int tluong();
-
-};
 class Node {
 private:
 	ThongTin data;
@@ -89,6 +70,7 @@ public:
 	void AddL();
 	void xuatNS();
 	void Sua();
+	void ghifile();
 };
 
 
@@ -140,59 +122,7 @@ public:
 //========================================================================
 
 //class LuongPT
-LuongPartTime::LuongPartTime()  //ham tao
-{
-	thuong = 0;
-	sogio = 0;
 
-}
-
-LuongPartTime::~LuongPartTime() //ham huy
-{
-
-}
-
-void LuongPartTime::nhap() {
-	cout << "\t\t\t\t\t\t\t\tTien thuong them : ";
-	cin >> thuong;
-	cout << "\t\t\t\t\t\t\t\tSo gio lam cua nhan vien : ";
-	cin >> sogio;
-}
-
-int LuongPartTime::luong()
-{
-	return (20000 * sogio) + thuong;
-}
-
-void LuongPartTime::xuat() {
-	cout << "\t\t\t\t\t\t\t\tTien luong nhan vien : " << luong() << "VND" << endl;
-}
-//================================================================================
-
-//class LuongFT
-LuongFullTime::LuongFullTime() {               //ham tao
-	songaynghi = 0;
-	tienthuong = 0;
-}
-
-LuongFullTime::~LuongFullTime() {           //ham huy
-
-}
-
-void LuongFullTime::nhap() {
-	cout << "\t\t\t\t\t\t\t\tTien thuong : ";
-	cin >> tienthuong;
-	cout << "\t\t\t\t\t\t\t\tSo ngay nghi : ";
-	cin >> songaynghi;
-}
-
-int LuongFullTime::tluong() {
-	return (5000000 - 20000 * songaynghi) + tienthuong;
-}
-
-void LuongFullTime::xuat() {
-	cout << "\t\t\t\t\t\t\t\tTien luong nhan vien : " << tluong() << "VND" << endl;
-}
 
 //=================================================================
 
@@ -204,6 +134,7 @@ ThongTin::ThongTin() {
 	ngay = 0;
 	thang = 0;
 	nam = 0;
+	
 }
 
 ThongTin::~ThongTin() {
@@ -224,6 +155,30 @@ void ThongTin::nhap() {
 	cin >> thang;
 	cout << "\t\t\t\t\t\t\t\tNam sinh : ";
 	cin >> nam;
+
+	cin.ignore();
+	do
+	{
+		cout << "\t\t\t\t\t\t\t\tLoai Nhan Vien : ";
+		getline(cin, nv);
+		if (pt.compare(nv) == 0) {
+			cout << "\t\t\t\t\t\t\t\tNhap So Gio Lam : ";
+			cin >> giolam;
+			cout << "\t\t\t\t\t\t\t\tTien Thuong Them : ";
+			cin >> tienthuong;
+			luongpt = (20000 * giolam) + tienthuong;
+		}
+		if (ft.compare(nv) == 0) {
+			cout << "\t\t\t\t\t\t\t\tNhap So Ngay Nghi Cua Nhan Vien : ";
+			cin >> songaynghi;
+			cout << "\t\t\t\t\t\t\t\tTien Thuong Them : ";
+			cin >> tienthuong;
+			luongft = (10000000 - 50000 * songaynghi) + tienthuong;
+		}
+		Beep(587, 500);
+		cout << "\t\t\t\t\t\t\t\tVui Long Nhap Lai..." << endl;
+	} while (pt.compare(nv)!=0&&ft.compare(nv)!=0);
+	system("cls");
 }
 
 
@@ -233,6 +188,12 @@ void ThongTin::xuat() {
 	cout << "Gioi tinh : " << gioitinh << endl;
 	cout << "\t\t\t\t\t\t\t\tID : " << ID << endl;
 	cout << "\t\t\t\t\t\t\t\tNgay sinh : Ngay " << ngay << " Thang " << thang << " Nam " << nam << endl;
+	if (pt.compare(nv) == 0) {
+		cout << "\t\t\t\t\t\t\t\tLuong Nhan Vien Part Time : " << luongpt << endl;
+	}
+	if (ft.compare(nv) == 0) {
+		cout << "\t\t\t\t\t\t\t\tLuong Nhan Vien Full Time : " << luongft << endl;
+	}
 	cout << "\t\t\t\t\t\t\t\t--------------------------------------------------------------------------------" << endl;
 
 }
@@ -257,17 +218,15 @@ void ThongTin::display() {
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||1.NHAP DU LIEU NHAN VIEN PART TIME VA XUAT LUONG                           ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||1.NHAP DU LIEU NHAN VIEN                                                   ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||2.NHAP DU LIEU NHAN VIEN FULL TIME VA XUAT LUONG                           ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||2.XUAT DANH SACH NHAN VIEN VA LUONG                                        ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||3.XUAT DANH SACH NHAN VIEN                                                 ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||3.TIM NHAN VIEN BANG ID                                                    ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||4.TIM NHAN VIEN BANG ID                                                    ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||4.CAP NHAT THONG TIN NHAN VIEN                                             ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||5.CAP NHAT THONG TIN NHAN VIEN                                             ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||6.THOAT                                                                    ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||5.THOAT                                                                    ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t===============================================================================          " << endl;
 }
 
@@ -704,8 +663,6 @@ void menuquanly() {
 	int c;
 	List list;
 	ThongTin ns;
-	LuongPartTime pt;
-	LuongFullTime ft;
 	do {
 		ns.display();
 		cout << endl;
@@ -716,34 +673,21 @@ void menuquanly() {
 			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===============================================================================" << endl;
-			cout << "\t\t\t\t\t\t\t\t||              NHAP DU LIEU NHAN VIEN PART TIME VA XUAT LUONG               ||" << endl;
+			cout << "\t\t\t\t\t\t\t\t||                           NHAP DU LIEU NHAN VIEN                          ||" << endl;
 			cout << "\t\t\t\t\t\t\t\t===============================================================================" << endl;
 			cout << endl;
 			list.AddL();
-			pt.nhap();
-			pt.xuat();
 			break;
 		case 2:
 			system("cls");
-			cout << "\t\t\t\t\t\t\t\t-------------------------------------------------------------------------------" << endl;
-			cout << "\t\t\t\t\t\t\t\t===============================================================================" << endl;
-			cout << "\t\t\t\t\t\t\t\t||              NHAP DU LIEU NHAN VIEN FULL TIME VA XUAT LUONG               ||" << endl;
-			cout << "\t\t\t\t\t\t\t\t===============================================================================" << endl;
-			cout << endl;
-			list.AddL();
-			ft.nhap();
-			ft.xuat();
-			break;
-		case 3:
-			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
-			cout << "\t\t\t\t\t\t\t\t||                           XUAT DANH SACH NHAN VIEN                            ||" << endl;
+			cout << "\t\t\t\t\t\t\t\t||                     XUAT DANH SACH NHAN VIEN VA LUONG                         ||" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
 			cout << endl;
 			list.xuatNS();
 			break;
-		case 4:
+		case 3:
 			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
@@ -752,7 +696,7 @@ void menuquanly() {
 			cout << endl;
 			list.SearchID();
 			break;
-		case 5:
+		case 4:
 			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
@@ -761,7 +705,7 @@ void menuquanly() {
 			cout << endl;
 			list.Sua();
 			break;
-		case 6:
+		case 5:
 			exit(0);
 			break;
 		default:
@@ -769,16 +713,21 @@ void menuquanly() {
 			cout << "\t\t\t\t\t\t\t\tVui Long Chon Dung..." << endl;
 			cin.ignore();
 		}
-	} while (chon != 6);
+	} while (chon != 5);
 }
 
-
+void resizeConsole(int width, int height)
+{
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r);
+	MoveWindow(console, r.left, r.top, width, height, TRUE);
+}
 
 int main() {
 
+	resizeConsole(1400, 900);
 
-
-	system("mode 650");
 	system("color 7");
 	string mk = "password";
 	string tk = "username";
