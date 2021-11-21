@@ -159,7 +159,7 @@ void ThongTin::nhap() {
 	cin.ignore();
 	do
 	{
-		cout << "\t\t\t\t\t\t\t\tLoai Nhan Vien : ";
+		cout << "\t\t\t\t\t\t\t\tLoai Nhan Vien (Part time or Full time) : ";
 		getline(cin, nv);
 		if (pt.compare(nv) == 0) {
 			cout << "\t\t\t\t\t\t\t\tNhap So Gio Lam : ";
