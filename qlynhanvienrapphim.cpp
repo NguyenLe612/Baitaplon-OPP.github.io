@@ -70,7 +70,10 @@ public:
 	void AddL();
 	void xuatNS();
 	void Sua();
-	void ghifile();
+	bool TimKiem(string id);
+	void DeleteFirst();
+	void DeleteLast();
+	void Delete();
 };
 
 
@@ -266,7 +269,9 @@ void ThongTin::display() {
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||4.CAP NHAT THONG TIN NHAN VIEN                                             ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||5.THOAT                                                                    ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||5.XOA NHAN VIEN                                                            ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||6.THOAT                                                                    ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t===============================================================================          " << endl;
 }
 
@@ -356,6 +361,74 @@ void List::SearchID() { //tim nhan vien bang id
 		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tID Khong Ton Tai!!!" << endl;
 	}
+}
+
+void List::DeleteFirst() {
+	Node* n = head;
+	head = head->next;
+	delete n;
+	size--;
+	cout << "\t\t\t\t\t\t\t\tDa xoa xong~" << endl;
+}
+//ham xoa node cuoi
+void List::DeleteLast() {
+	Node* n{};
+	for (Node* k = head; k != NULL; k = k->next) {
+		if (k == tail) {
+			tail = n;
+			tail->next = NULL;
+			delete k;
+			size--;
+			cout << "\t\t\t\t\t\t\t\tDa xoa xong~" << endl;
+			return;
+		}
+		n = k;
+	}
+}
+bool List::TimKiem(string id) {
+	for (Node* k = head; k != NULL; k = k->next) {
+		if (k->data.getID() == id) {
+			return 0;
+		}
+	}
+	return 1;
+}
+//ham xoa 1 node bat ki
+void List::Delete() {
+	string x; 		// pos id can xoa
+	if (head == tail && head == NULL) {
+		cout << "\t\t\t\t\t\t\t\tDanh sach rong, khong the xoa" << endl;
+		return;
+	}
+	cout << "\t\t\t\t\t\t\t\tNhap ID can xoa: ";
+	cin >> x;
+
+	if (head->data.getID() == x) {
+		DeleteFirst();
+		return;
+	}
+
+	if (tail->data.getID() == x) {
+		DeleteLast();
+		return;
+	}
+
+	Node* n{}; //node *n: la node truoc node can xoa
+	for (Node* k = head; k != NULL; k = k->next) {
+		if (k->data.getID() == x) {
+			n->next = k->next;
+			delete k;
+			size--;
+			cout << "\t\t\t\t\t\t\t\tDa xoa xong~" << endl;
+			return;
+		}
+		n = k;
+			
+	}
+	if (TimKiem(x)==1) {
+		cout << "\t\t\t\t\t\t\t\tKhong tim thay sinh vien can xoa!" << endl;
+	}
+
 }
 
 void List::xuatNS() {  //xuat ds
@@ -690,7 +763,8 @@ void MovieTicketMaster::DisplayMenu()  //hien thi menu, ten rap va vi tri trong 
 	cout << "\t\t\t\t\t\t\t\t||3.MUA VE                                                                   ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||4.THOAT                                                                    ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t===============================================================================          " << endl;;
+	cout << "\t\t\t\t\t\t\t\t===============================================================================          " << endl;
+
 
 }
 
@@ -746,14 +820,24 @@ void menuquanly() {
 			list.Sua();
 			break;
 		case 5:
+			system("cls");
+			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
+			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
+			cout << "\t\t\t\t\t\t\t\t||                              XOA NHAN VIEN                                    ||" << endl;
+			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
+			cout << endl;
+			list.Delete();
+			break;
+		case 6:
 			exit(0);
 			break;
+
 		default:
 			Beep(587, 500);
 			cout << "\t\t\t\t\t\t\t\tVui Long Chon Dung..." << endl;
 			cin.ignore();
 		}
-	} while (chon != 5);
+	} while (chon != 6);
 }
 
 void resizeConsole(int width, int height)
