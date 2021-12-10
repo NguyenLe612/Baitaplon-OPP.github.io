@@ -40,6 +40,7 @@ public:
 	void xuat();
 
 	string getID();
+	string gethoten();
 
 	void display();
 
@@ -67,6 +68,7 @@ public:
 
 	Node* CreateNode(ThongTin ns);
 	void SearchID();
+	void SearchName();
 	void AddL();
 	void xuatNS();
 	void Sua();
@@ -245,6 +247,10 @@ string ThongTin::getID() {
 	return ID;
 }
 
+string ThongTin::gethoten() {
+	return hoten;
+}
+
 void ThongTin::display() {
 	cout << "\t\t\t\t\t\t\t\t===============================================================================" << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||" << endl;
@@ -267,11 +273,13 @@ void ThongTin::display() {
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||3.TIM NHAN VIEN BANG ID                                                    ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||4.CAP NHAT THONG TIN NHAN VIEN                                             ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||4.TIM NHAN VIEN BANG TEN                                                   ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||5.XOA NHAN VIEN                                                            ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||5.CAP NHAT THONG TIN NHAN VIEN                                             ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
-	cout << "\t\t\t\t\t\t\t\t||6.THOAT                                                                    ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||6.XOA NHAN VIEN                                                            ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||                                                                           ||          " << endl;
+	cout << "\t\t\t\t\t\t\t\t||7.THOAT                                                                    ||          " << endl;
 	cout << "\t\t\t\t\t\t\t\t===============================================================================          " << endl;
 }
 
@@ -360,6 +368,31 @@ void List::SearchID() { //tim nhan vien bang id
 	if (f == 0) {
 		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tID Khong Ton Tai!!!" << endl;
+		return;
+	}
+}
+
+void List::SearchName() {
+	string name;
+	int f = 0;
+	if (size == 0) {
+		Beep(587, 500);
+		cout << "\t\t\t\t\t\t\t\tDanh Sach Hien Tai Chua Co Nhan Su Nao!!!" << endl;
+		return;
+	}
+	cout << "\t\t\t\t\t\t\t\tNhap Ten Nhan Vien Can Tim : ";
+	cin >> name;
+	Node* n = head;
+	for (Node* n = head; n != NULL; n = n->next) {
+		if (n->data.gethoten() == name) {
+			f++;
+			n->data.xuat();
+		}
+		if (f == 0) {
+			Beep(587, 500);
+			cout << "\t\t\t\t\t\t\t\tTen Khong Ton Tai!!!" << endl;
+			return;
+		}
 	}
 }
 
@@ -814,12 +847,21 @@ void menuquanly() {
 			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
+			cout << "\t\t\t\t\t\t\t\t||                                  TIM KIEM                                     ||" << endl;
+			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
+			cout << endl;
+			list.SearchName();
+			break;
+		case 5:
+			system("cls");
+			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
+			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
 			cout << "\t\t\t\t\t\t\t\t||                              cAP NHAT NHAN VIEN                               ||" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
 			cout << endl;
 			list.Sua();
 			break;
-		case 5:
+		case 6:
 			system("cls");
 			cout << "\t\t\t\t\t\t\t\t-----------------------------------------------------------------------------------" << endl;
 			cout << "\t\t\t\t\t\t\t\t===================================================================================" << endl;
@@ -828,7 +870,7 @@ void menuquanly() {
 			cout << endl;
 			list.Delete();
 			break;
-		case 6:
+		case 7:
 			exit(0);
 			break;
 
@@ -837,7 +879,7 @@ void menuquanly() {
 			cout << "\t\t\t\t\t\t\t\tVui Long Chon Dung..." << endl;
 			cin.ignore();
 		}
-	} while (chon != 6);
+	} while (chon != 7);
 }
 
 void resizeConsole(int width, int height)
