@@ -1,4 +1,4 @@
-﻿#include<iostream>
+#include<iostream>
 #include<iomanip>
 #include<string>
 #include<Windows.h>
@@ -119,10 +119,6 @@ public:
 
 
 
-//========================================================================
-
-//class LuongPT
-
 
 //=================================================================
 
@@ -134,7 +130,7 @@ ThongTin::ThongTin() {
 	ngay = 0;
 	thang = 0;
 	nam = 0;
-	
+
 }
 
 ThongTin::~ThongTin() {
@@ -148,13 +144,56 @@ void ThongTin::nhap() {
 	getline(cin, ID);
 	cout << "\t\t\t\t\t\t\t\tGioi tinh : ";
 	getline(cin, gioitinh);
-	
-	cout << "\t\t\t\t\t\t\t\tNgay sinh : ";
-	cin >> ngay;
+NAM:cout << "\t\t\t\t\t\t\t\tNam sinh : ";
+	cin >> nam;
+	if (nam < 1960 || nam>2006) {
+		cout << "\t\t\t\t\t\t\t\tVui long nhap lai!!!" << endl;
+		goto NAM;
+	}
 	cout << "\t\t\t\t\t\t\t\tThang sinh : ";
 	cin >> thang;
-	cout << "\t\t\t\t\t\t\t\tNam sinh : ";
-	cin >> nam;
+	switch (thang)
+	{
+	case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+		
+	NGAY:cout << "\t\t\t\t\t\t\t\tNgay sinh : ";
+		cin >> ngay;
+		if (ngay < 1 || ngay>31) {
+			cout << "\t\t\t\t\t\t\t\tVui long nhap lai!!!" << endl;
+			goto NGAY;
+		}
+	
+		break;
+	case 4: case 6: case 9: case 11:
+	NGAY1:cout << "\t\t\t\t\t\t\t\tNgay sinh : ";
+		cin >> ngay;
+		if (ngay < 1 || ngay>30) {
+			cout << "\t\t\t\t\t\t\t\tVui long nhap lai!!!" << endl;
+			goto NGAY1;
+		}
+	
+		break;
+	case 2:
+		if (nam % 4 == 0) {
+		NGAY2:cout << "\t\t\t\t\t\t\t\tNgay sinh : ";
+			cin >> ngay;
+			if (ngay < 1 || ngay>29) {
+				cout << "\t\t\t\t\t\t\t\tVui long nhap lai!!!" << endl;
+				goto NGAY2;
+			}
+		}
+		else {
+		NGAY3:cout << "\t\t\t\t\t\t\t\tNgay sinh : ";
+			cin >> ngay;
+			if (ngay < 1 || ngay>28) {
+				cout << "\t\t\t\t\t\t\t\tVui long nhap lai!!!" << endl;
+				goto NGAY3;
+			}
+		}
+		break;
+	}
+
+	
 
 	cin.ignore();
 	do
@@ -175,9 +214,10 @@ void ThongTin::nhap() {
 			cin >> tienthuong;
 			luongft = (10000000 - 50000 * songaynghi) + tienthuong;
 		}
-		Beep(587, 500);
-		cout << "\t\t\t\t\t\t\t\tVui Long Nhap Lai..." << endl;
-	} while (pt.compare(nv)!=0&&ft.compare(nv)!=0);
+		else
+			Beep(587, 500);
+			cout << "\t\t\t\t\t\t\t\tVui Long Nhap Lai..." << endl;
+	} while (pt.compare(nv) != 0 && ft.compare(nv) != 0);
 	system("cls");
 }
 
@@ -286,10 +326,10 @@ void List::Sua() { //cap nhat thong tin
 			Beep(1050, 500);
 			cout << "\t\t\t\t\t\t\t\tDa Hoan Tat" << endl;
 			return;
-				
+
 		}
 	}
-	if (f==0) {
+	if (f == 0) {
 		Beep(587, 500);
 		cout << "\t\t\t\t\t\t\t\tMa ID Khong Ton Tai..." << endl;
 	}
@@ -310,7 +350,7 @@ void List::SearchID() { //tim nhan vien bang id
 			f++;
 			n->data.xuat();
 		}
-		
+
 	}
 	if (f == 0) {
 		Beep(587, 500);
@@ -592,21 +632,21 @@ void MovieTicketMaster::Run()  //chay vong lap de yeu cau su lua chon cua ng dun
 		{
 
 		case 1:
-			
+
 			ViewMovies();
 			system("PAUSE");
 			system("CLS");
 			break;
 
 		case 2:
-			
+
 			SearchMovie();
 			system("PAUSE");
 			system("CLS");
 			break;
 
 		case 3:
-			
+
 			MuaVe();
 			break;
 
@@ -622,7 +662,7 @@ void MovieTicketMaster::Run()  //chay vong lap de yeu cau su lua chon cua ng dun
 
 		}
 	} while (chon != 4);
-	
+
 }
 
 
@@ -658,7 +698,7 @@ void MovieTicketMaster::DisplayMenu()  //hien thi menu, ten rap va vi tri trong 
 
 void menuquanly() {
 
-	
+
 	int chon;
 	int c;
 	List list;
@@ -740,34 +780,34 @@ int main() {
 	cout << "\t\t\t\t\t\t\t\tBAN LA : ";
 	cin >> a;
 	system("cls");
-	LAP:if (a == 2) {
-		cout << "\t\t\t\t\t\t\t\t===============================================" << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\tDANG NHAP" << endl;
-		cout << "\t\t\t\t\t\t\t\t===============================================" << endl;
-		cout << endl;
-		cout << "\t\t\t\t\t\t\t\tTai khoan : ";
-		cin >> usn;
-		cout << endl;
-		cout << "\t\t\t\t\t\t\t\tMat khau : ";
-		cin >> pwd;
-		system("cls");
-		if (tk.compare(usn) == 0 && mk.compare(pwd) == 0) {
-			menuquanly();
-		}
-		else
-		{
-			Beep(587, 500);
-			cout << "\t\t\t\t\t\t\t\tTai khoan hoac mat khau khong dung...Vui long nhap lai" << endl;
-			cout << endl;
-			goto LAP;
-		}		
+LAP:if (a == 2) {
+	cout << "\t\t\t\t\t\t\t\t===============================================" << endl;
+	cout << "\t\t\t\t\t\t\t\t\t\tDANG NHAP" << endl;
+	cout << "\t\t\t\t\t\t\t\t===============================================" << endl;
+	cout << endl;
+	cout << "\t\t\t\t\t\t\t\tTai khoan : ";
+	cin >> usn;
+	cout << endl;
+	cout << "\t\t\t\t\t\t\t\tMat khau : ";
+	cin >> pwd;
+	system("cls");
+	if (tk.compare(usn) == 0 && mk.compare(pwd) == 0) {
+		menuquanly();
 	}
-	else if (a == 1) {
-		Movie movie_objects[g_kArraySize];
-		MovieTicketMaster* p_MovieTicketMaster = new MovieTicketMaster();
-		p_MovieTicketMaster->Init(movie_objects, g_kArraySize);
-		p_MovieTicketMaster->Run();
-		delete p_MovieTicketMaster;
+	else
+	{
+		Beep(587, 500);
+		cout << "\t\t\t\t\t\t\t\tTai khoan hoac mat khau khong dung...Vui long nhap lai" << endl;
+		cout << endl;
+		goto LAP;
+	}
+}
+else if (a == 1) {
+	Movie movie_objects[g_kArraySize];
+	MovieTicketMaster* p_MovieTicketMaster = new MovieTicketMaster();
+	p_MovieTicketMaster->Init(movie_objects, g_kArraySize);
+	p_MovieTicketMaster->Run();
+	delete p_MovieTicketMaster;
 
-	}
+}
 }
